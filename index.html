@@ -606,6 +606,15 @@
           padding: 0;
         }
       }
+
+      /* --- Guard override: ensure exactly one mode shows (kept last for precedence) --- */
+      .driver-only,
+      .depot-only { display: none !important; }
+
+      body.driver-mode .driver-only { display: block !important; }
+      body.depot-mode  .depot-only  { display: block !important; }
+      /* --- end guard override --- */
+
     </style>
   </head>
   <body class="driver-mode">
