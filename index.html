@@ -87,21 +87,12 @@
         display: block;
       }
 
-      .driver-only {
-        display: initial;
-      }
+      /* JUST THE CHANGE: ensure only one mode shows at a time */
+      .driver-only,
+      .depot-only { display: none !important; }
 
-      .depot-only {
-        display: none;
-      }
-
-      body.depot-mode .driver-only {
-        display: none !important;
-      }
-
-      body.depot-mode .depot-only {
-        display: initial;
-      }
+      body.driver-mode .driver-only { display: initial !important; }
+      body.depot-mode  .depot-only  { display: initial !important; }
 
       /* Sticky global navigation */
       header {
