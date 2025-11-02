@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kinsman Delivery Manager | Purpose-built courier control</title>
+    <meta
+      name="description"
+      content="Discover Kinsman Delivery Manager, the in-house platform shaped with drivers from day one for precision dispatch, live proof, and effortless onboarding."
+    />
+    <link rel="canonical" href="https://kinsmancourier.com/delivery-manager" />
+    <link rel="icon" type="image/jpeg" href="/assets/IMG_4197.jpeg" />
+    <meta property="og:title" content="Kinsman Delivery Manager" />
+    <meta
+      property="og:description"
+      content="A professional-grade control tower for fleets and partners, engineered by Kinsman Courier."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/IMG_4197.jpeg" />
+    <meta property="og:url" content="https://kinsmancourier.com/delivery-manager" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --blue: #0c4da2;
+        --navy: #0a2e5d;
+        --gold: #c79a2b;
+        --cream: #f6f2ea;
+        --ink: #0e1320;
+        --line: #e7e2d9;
+        --shadow: rgba(10, 46, 93, 0.08);
+        --glow: rgba(199, 154, 43, 0.25);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          sans-serif;
+        background: radial-gradient(circle at top right, rgba(199, 154, 43, 0.08), transparent),
+          var(--cream);
+        color: var(--ink);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(246, 242, 234, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .top-bar {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: var(--navy);
+        text-transform: uppercase;
+      }
+
+      .brand img {
+        width: 44px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 12px 30px rgba(12, 77, 162, 0.18);
+      }
+
+      nav {
+        display: flex;
+        gap: 20px;
+        font-weight: 600;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        padding: 8px 14px;
+        border-radius: 999px;
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+
+      nav a:hover,
+      nav a:focus {
+        background: rgba(12, 77, 162, 0.08);
+        color: var(--navy);
+      }
+
+      nav a[aria-current='page'] {
+        background: var(--navy);
+        color: white;
+        box-shadow: 0 6px 18px rgba(10, 46, 93, 0.28);
+      }
+
+      main {
+        flex: 1 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 96px 24px 72px;
+        background: linear-gradient(135deg, rgba(12, 77, 162, 0.92), rgba(10, 46, 93, 0.92)),
+          url('/assets/IMG_4197.jpeg') no-repeat center/cover;
+        color: white;
+      }
+
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 20% 20%, rgba(199, 154, 43, 0.45), transparent);
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        gap: 48px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: center;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.4rem, 4vw + 1rem, 3.4rem);
+        line-height: 1.05;
+        margin-bottom: 16px;
+      }
+
+      .hero-copy p {
+        font-size: 1.1rem;
+        margin-bottom: 24px;
+        max-width: 520px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--gold);
+        color: var(--navy);
+        box-shadow: 0 12px 30px rgba(199, 154, 43, 0.35);
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 36px rgba(199, 154, 43, 0.45);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        color: white;
+      }
+
+      .qr-card {
+        position: relative;
+        background: rgba(246, 242, 234, 0.96);
+        border-radius: 28px;
+        padding: 28px;
+        box-shadow: 0 18px 40px rgba(10, 46, 93, 0.28);
+        text-align: center;
+        color: var(--ink);
+      }
+
+      .qr-card img {
+        border-radius: 16px;
+        box-shadow: 0 10px 24px rgba(10, 46, 93, 0.22);
+      }
+
+      .qr-card .crown {
+        position: absolute;
+        width: 70px;
+        top: -32px;
+        right: 24px;
+        transform: rotate(-12deg);
+        filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.18));
+      }
+
+      section {
+        padding: 96px 24px;
+      }
+
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 3vw + 1rem, 2.6rem);
+        color: var(--navy);
+        margin-bottom: 24px;
+      }
+
+      .feature-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 24px;
+        padding: 28px;
+        box-shadow: 0 18px 35px var(--shadow);
+        border: 1px solid rgba(12, 77, 162, 0.08);
+      }
+
+      .feature-card h3 {
+        font-size: 1.3rem;
+        color: var(--navy);
+        margin-bottom: 12px;
+      }
+
+      .feature-card p {
+        line-height: 1.6;
+      }
+
+      .timeline {
+        position: relative;
+        margin-top: 48px;
+        padding-left: 24px;
+        border-left: 2px solid rgba(10, 46, 93, 0.2);
+      }
+
+      .timeline-step {
+        margin-bottom: 32px;
+        position: relative;
+        padding-left: 24px;
+      }
+
+      .timeline-step::before {
+        content: '';
+        position: absolute;
+        left: -33px;
+        top: 4px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--gold);
+        box-shadow: 0 0 0 6px rgba(199, 154, 43, 0.15);
+      }
+
+      .timeline-step h3 {
+        margin-bottom: 8px;
+        color: var(--navy);
+      }
+
+      .metrics-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-top: 32px;
+      }
+
+      .metric-card {
+        background: rgba(12, 77, 162, 0.08);
+        border-radius: 24px;
+        padding: 28px;
+        text-align: center;
+      }
+
+      .metric-card strong {
+        display: block;
+        font-size: 2rem;
+        color: var(--navy);
+        margin-bottom: 8px;
+      }
+
+      .cta-section {
+        background: linear-gradient(135deg, rgba(12, 77, 162, 0.92), rgba(10, 46, 93, 0.92));
+        color: white;
+        text-align: center;
+        padding: 88px 24px;
+      }
+
+      .cta-section .cta-inner {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      footer {
+        background: rgba(10, 46, 93, 0.96);
+        color: rgba(255, 255, 255, 0.8);
+        padding: 32px 24px;
+        text-align: center;
+      }
+
+      footer a {
+        color: rgba(255, 255, 255, 0.92);
+        font-weight: 600;
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          padding: 72px 18px 56px;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .qr-card {
+          margin-top: 12px;
+        }
+
+        .timeline {
+          padding-left: 18px;
+        }
+
+        .timeline-step {
+          padding-left: 18px;
+        }
+
+        .timeline-step::before {
+          left: -28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="top-bar">
+        <a class="brand" href="/">
+          <img src="/assets/IMG_4197.jpeg" alt="Kinsman Courier logo" />
+          Kinsman Courier
+        </a>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/index.html#about">About us</a>
+          <a href="/delivery-manager.html" aria-current="page">Delivery Manager</a>
+          <a href="/index.html#become">Become a Kinsman</a>
+          <a href="/index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <h1>Delivery Manager built hand-in-hand with the people who drive.</h1>
+            <p>
+              From the first beta run, our couriers shaped every workflow. The result is the
+              Kinsman Delivery Manager: a command centre that keeps routes fluid, proof airtight,
+              and drivers respected.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="mailto:hello@kinsmancourier.com?subject=Kinsman%20Delivery%20Manager">
+                Book a live walkthrough
+              </a>
+              <a class="btn btn-ghost" href="/index.html#become">Join as a Kinsman</a>
+            </div>
+          </div>
+          <div class="qr-card" aria-labelledby="qr-title">
+            <img class="crown" src="/assets/Kinsman%20crown.png" alt="Leaning Kinsman crown" />
+            <h2 id="qr-title" style="font-size: 1.2rem; margin-bottom: 16px; color: var(--navy);">
+              Scan &amp; register in minutes
+            </h2>
+            <img src="/assets/IMG_1092.jpeg" alt="QR code to register for the Kinsman Delivery Manager" />
+            <p style="margin-top: 16px; color: var(--ink);">
+              Drivers can self-onboard, upload documents, and accept routes straight from their phone.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="features-title">
+        <div class="section-inner">
+          <h2 id="features-title">Operate like a national network, keep the local touch.</h2>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <h3>Live control tower</h3>
+              <p>
+                Manage hundreds of drops with drag-and-drop routing, instant reassignment, and live ETA
+                confidence scores so nothing slips.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Driver-first UX</h3>
+              <p>
+                Built with our founding drivers, the mobile app surfaces earnings, proof tasks, and
+                support chat on the same screen—no guesswork, no grey areas.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Proof that persuades</h3>
+              <p>
+                High-resolution photo capture, signature hand-off, and geotagged timestamps funnel into
+                instant client-ready reports.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Compliance handled</h3>
+              <p>
+                Automatic right-to-work checks, insurance reminders, and vehicle logbooks keep your fleet
+                road-ready and audit-proof.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="timeline-title" style="background: white;">
+        <div class="section-inner">
+          <h2 id="timeline-title">From briefing to full launch in three steps.</h2>
+          <div class="timeline">
+            <div class="timeline-step">
+              <h3>1. Discovery with your stakeholders</h3>
+              <p>
+                We map your must-haves, agree KPIs, and connect the Delivery Manager to your existing
+                booking systems or spreadsheets.
+              </p>
+            </div>
+            <div class="timeline-step">
+              <h3>2. Pilot with co-branded onboarding</h3>
+              <p>
+                A curated driver cohort trials routes within 10 working days. Feedback loops directly into
+                dashboards before you scale.
+              </p>
+            </div>
+            <div class="timeline-step">
+              <h3>3. Scale with confidence</h3>
+              <p>
+                Dedicated Kinsman success specialists monitor SLAs, provide training refreshers, and unlock
+                advanced analytics as volumes grow.
+              </p>
+            </div>
+          </div>
+          <div class="metrics-grid" role="list" aria-label="Delivery Manager impact highlights">
+            <div class="metric-card" role="listitem">
+              <strong>98%</strong>
+              On-time success across beta partners
+            </div>
+            <div class="metric-card" role="listitem">
+              <strong>15 min</strong>
+              Average driver onboarding time
+            </div>
+            <div class="metric-card" role="listitem">
+              <strong>24/7</strong>
+              Support from experienced route leads
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="integration-title">
+        <div class="section-inner">
+          <h2 id="integration-title">Integrates with the tools you already trust.</h2>
+          <p style="max-width: 640px; line-height: 1.7; font-size: 1.05rem;">
+            Webhooks, CSV imports, and secure APIs connect the Delivery Manager to depot scanners,
+            e-commerce platforms, and customer service desks. Whether you dispatch from spreadsheets or a
+            bespoke TMS, we plug straight in and keep the data flowing.
+          </p>
+          <div class="feature-grid" style="margin-top: 32px;">
+            <article class="feature-card">
+              <h3>Actionable analytics</h3>
+              <p>
+                Surface route heatmaps, drop density, and service recovery trends in seconds with exports for
+                stakeholders.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Role-based permissions</h3>
+              <p>
+                Give controllers, client services, and drivers the precise access they need—nothing more,
+                nothing less.
+              </p>
+            </article>
+            <article class="feature-card">
+              <h3>Scales across regions</h3>
+              <p>
+                Launch new depots without rebuilding processes. Templates and automations accelerate every
+                roll-out.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section" aria-labelledby="cta-title">
+        <div class="cta-inner">
+          <img
+            src="/assets/Kinsman%20crown.png"
+            alt="Kinsman crown icon"
+            style="width: 90px; margin: 0 auto 24px; display: block; transform: rotate(-8deg);"
+          />
+          <h2 id="cta-title" style="color: white;">Ready to crown your courier control?</h2>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 28px;">
+            Partner with a team that codes, tests, and delivers alongside the drivers. Let’s tailor the
+            Delivery Manager to your network and put a professional sheen on every mile.
+          </p>
+          <a
+            class="btn btn-primary"
+            href="mailto:hello@kinsmancourier.com?subject=Delivery%20Manager%20consultation"
+            style="font-size: 1rem;"
+          >
+            Schedule your consultation
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p style="margin-bottom: 12px;">© <span id="year"></span> Kinsman Courier. All rights reserved.</p>
+      <p>
+        <a href="/">Return to KinsmanCourier.com</a>
+      </p>
+    </footer>
+    <script>
+      const yearEl = document.getElementById('year');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    </script>
+  </body>
+</html>
