@@ -142,6 +142,10 @@
         align-items: center;
       }
 
+      .hero > :last-child {
+        justify-self: center;
+      }
+
       .badge {
         font-size: 0.85rem;
         letter-spacing: 0.08em;
@@ -217,11 +221,31 @@
       }
 
       .hero-card {
+        position: relative;
         background: #fff;
         border: 1px solid var(--line);
-        border-radius: 16px;
-        box-shadow: 0 10px 30px var(--shadow);
-        overflow: hidden;
+        border-radius: 36px;
+        box-shadow: 0 26px 70px rgba(10, 46, 93, 0.12);
+        padding: clamp(36px, 6vw, 72px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        isolation: isolate;
+      }
+
+      .hero-card::before {
+        content: '';
+        position: absolute;
+        inset: 12%;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(199, 154, 43, 0.25), transparent 70%);
+        z-index: -1;
+      }
+
+      .hero-card img {
+        width: clamp(220px, 32vw, 420px);
+        height: auto;
+        filter: drop-shadow(0 22px 32px rgba(10, 46, 93, 0.18));
       }
 
       .ribbon {
@@ -283,6 +307,21 @@
         gap: 16px;
       }
 
+      .perks-list {
+        padding-left: 20px;
+        margin: 0 0 20px;
+        line-height: 1.6;
+      }
+
+      .fee-note {
+        font-size: 0.95rem;
+        background: rgba(12, 77, 162, 0.08);
+        border-left: 4px solid var(--gold);
+        padding: 16px 20px;
+        border-radius: 12px;
+        margin: 24px 0 0;
+      }
+
       label {
         display: flex;
         flex-direction: column;
@@ -332,6 +371,7 @@
 
         .hero {
           grid-template-columns: 1fr;
+          text-align: center;
         }
 
         .hero-card {
@@ -362,7 +402,7 @@
     <header>
       <div class="top-bar">
         <a class="brand" href="#home">
-          <img src="assets/kinsman_logo_blue.png" alt="Kinsman Courier crown logo" />
+          <img src="assets/kinsman-crown.png" alt="Kinsman Courier crown logo" />
           <span>KINSMAN COURIER</span>
         </a>
         <nav aria-label="Primary">
@@ -380,17 +420,20 @@
           <span class="badge">Reliable • Friendly • Royal Service</span>
           <h1 id="home-title">Delivering with care—couriers you can crown.</h1>
           <p class="lead">
-            Fast, dependable deliveries with a community-first heart. From urgent runs to
-            scheduled routes, Kinsman gets it there.
+            Because everyone deserves a Kinsman. Royal-standard couriers who keep promises and
+            treat every parcel like it matters.
+          </p>
+          <p>
+            Build routes that match your life, choose the work you want, and stay proudly
+            self-employed with a community that has your back.
           </p>
           <div class="cta-group">
             <a class="btn btn-primary" href="#contact">Book a delivery</a>
             <a class="btn btn-ghost" href="#become">Become a Kinsman</a>
           </div>
         </div>
-        <div class="hero-card" role="presentation">
-          <div class="ribbon" aria-hidden="true"></div>
-          <img src="assets/IMG_4197.jpeg" alt="Kinsman Courier brand mark with crown" />
+        <div class="hero-card" aria-hidden="true">
+          <img src="assets/kinsman-crown.png" alt="" />
         </div>
       </section>
 
@@ -434,7 +477,7 @@
         >
           <div>
             <img
-              src="assets/Kinsman%20crown.png"
+              src="assets/kinsman-crown.png"
               alt="Kinsman crown icon"
               style="width: 96px; transform: rotate(-10deg); filter: drop-shadow(0 12px 18px rgba(10, 46, 93, 0.25));"
             />
@@ -511,8 +554,18 @@
           Become a Kinsman
         </h2>
         <p>
-          Join our courier community. Set your availability, claim jobs, and deliver with pride.
-          Complete the form and we’ll get back to you with next steps.
+          Becoming a Kinsman is about standing tall for service and keeping control of your time.
+          Pick the jobs that fit, plan your days your way, and deliver with the polish of a crowned
+          professional.
+        </p>
+        <ul class="perks-list">
+          <li>You remain self-employed—run your routes like your own business.</li>
+          <li>Choose the work that suits you and set the pace of your earnings.</li>
+          <li>Access a supportive network that believes everyone deserves a Kinsman.</li>
+        </ul>
+        <p class="fee-note">
+          Secure your crown today for a one-off £5 sign-up fee—yours for life. Monthly membership is
+          coming soon, but early registrants keep the £5 forever.
         </p>
         <form action="mailto:hello@kinsmancourier.com" method="post" enctype="text/plain">
           <!-- TODO: Replace mailto action with secure backend endpoint when available. -->
