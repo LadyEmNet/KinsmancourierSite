@@ -6,14 +6,14 @@
     <title>Kinsman Delivery Manager | Purpose-built courier control</title>
     <meta
       name="description"
-      content="Discover Kinsman Delivery Manager, the in-house platform shaped with drivers from day one for precision dispatch, live proof, and effortless onboarding."
+      content="Explore the Kinsman Courier App—Telegram-based delivery coordination that links drivers, dispatchers, and depots with real-time Google Sheets data."
     />
     <link rel="canonical" href="https://kinsmancourier.com/delivery-manager" />
     <link rel="icon" type="image/jpeg" href="assets/IMG_4197.jpeg" />
     <meta property="og:title" content="Kinsman Delivery Manager" />
     <meta
       property="og:description"
-      content="A professional-grade control tower for fleets and partners, engineered by Kinsman Courier."
+      content="Smart delivery coordination built for real-world operations. The Kinsman Courier App keeps relief routes and daily rounds in sync."
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="assets/IMG_4197.jpeg" />
@@ -167,6 +167,15 @@
         margin-bottom: 16px;
       }
 
+      .hero-copy .hero-subtitle {
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 18px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
       .hero-copy p {
         font-size: 1.1rem;
         margin-bottom: 24px;
@@ -273,55 +282,14 @@
         line-height: 1.6;
       }
 
-      .timeline {
-        position: relative;
-        margin-top: 48px;
-        padding-left: 24px;
-        border-left: 2px solid rgba(10, 46, 93, 0.2);
+      .feature-card ul {
+        padding-left: 20px;
+        margin: 0;
+        line-height: 1.6;
       }
 
-      .timeline-step {
-        margin-bottom: 32px;
-        position: relative;
-        padding-left: 24px;
-      }
-
-      .timeline-step::before {
-        content: '';
-        position: absolute;
-        left: -33px;
-        top: 4px;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: var(--gold);
-        box-shadow: 0 0 0 6px rgba(199, 154, 43, 0.15);
-      }
-
-      .timeline-step h3 {
-        margin-bottom: 8px;
-        color: var(--navy);
-      }
-
-      .metrics-grid {
-        display: grid;
-        gap: 24px;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        margin-top: 32px;
-      }
-
-      .metric-card {
-        background: rgba(12, 77, 162, 0.08);
-        border-radius: 24px;
-        padding: 28px;
-        text-align: center;
-      }
-
-      .metric-card strong {
-        display: block;
-        font-size: 2rem;
-        color: var(--navy);
-        margin-bottom: 8px;
+      .feature-card ul li + li {
+        margin-top: 8px;
       }
 
       .cta-section {
@@ -361,18 +329,6 @@
         .qr-card {
           margin-top: 12px;
         }
-
-        .timeline {
-          padding-left: 18px;
-        }
-
-        .timeline-step {
-          padding-left: 18px;
-        }
-
-        .timeline-step::before {
-          left: -28px;
-        }
       }
     </style>
   </head>
@@ -396,11 +352,21 @@
       <section class="hero" id="hero">
         <div class="hero-inner">
           <div class="hero-copy">
-            <h1>Delivery Manager built hand-in-hand with the people who drive.</h1>
+            <h1>Kinsman Courier App</h1>
+            <p class="hero-subtitle">Smart Delivery Coordination — Built for Real-World Operations.</p>
             <p>
-              From the first beta run, our couriers shaped every workflow. The result is the
-              Kinsman Delivery Manager: a command centre that keeps routes fluid, proof airtight,
-              and drivers respected.
+              The Kinsman Courier App is the control hub that keeps our delivery network running
+              smoothly—connecting drivers, dispatchers, and depots through a simple Telegram-based
+              system.
+            </p>
+            <p>
+              It powers every emergency and relief route we run, turning complex logistics into
+              guided, one-tap workflows that anyone on the road can use.
+            </p>
+            <p>
+              Built originally for Kinsman Deliveries in Plymouth, the app has evolved into a
+              complete courier management tool that blends automation with hands-on control—without
+              needing expensive software or specialist hardware.
             </p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="mailto:hello@kinsmancourier.com?subject=Kinsman%20Delivery%20Manager">
@@ -410,13 +376,14 @@
             </div>
           </div>
           <div class="qr-card" aria-labelledby="qr-title">
-            <img class="crown" src="assets/Kinsman%20crown.png" alt="Leaning Kinsman crown" />
+            <img class="crown" src="assets/kinsman-crown.png" alt="Leaning Kinsman crown" />
             <h2 id="qr-title" style="font-size: 1.2rem; margin-bottom: 16px; color: var(--navy);">
               Scan &amp; register in minutes
             </h2>
             <img src="assets/IMG_1092.jpeg" alt="QR code to register for the Kinsman Delivery Manager" />
             <p style="margin-top: 16px; color: var(--ink);">
-              Drivers can self-onboard, upload documents, and accept routes straight from their phone.
+              Drivers and depot leads can self-onboard, upload documents, and accept routes straight
+              from their phones.
             </p>
           </div>
         </div>
@@ -424,112 +391,96 @@
 
       <section aria-labelledby="features-title">
         <div class="section-inner">
-          <h2 id="features-title">Operate like a national network, keep the local touch.</h2>
+          <h2 id="features-title">How It Works</h2>
+          <p>
+            At its heart, the Kinsman Courier App runs inside Telegram—meaning every driver and
+            dispatcher already has access, no installations or setup required.
+          </p>
+          <p>
+            Through a set of interactive menus, drivers can register, update their details, claim
+            shifts, upload proof of delivery, and track their work—all from one chat window.
+          </p>
+          <p>
+            Dispatchers use a dedicated control panel to post new shifts, monitor activity, manage
+            depots, and send live announcements directly to available drivers.
+          </p>
+          <p>
+            All the data is stored and synced in real time using Google Sheets, creating a
+            transparent and flexible operations record that anyone on the admin team can view or
+            update instantly.
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="audiences-title" style="background: white;">
+        <div class="section-inner">
+          <h2 id="audiences-title">For Drivers &amp; Dispatchers</h2>
           <div class="feature-grid">
             <article class="feature-card">
-              <h3>Live control tower</h3>
-              <p>
-                Manage hundreds of drops with drag-and-drop routing, instant reassignment, and live ETA
-                confidence scores so nothing slips.
-              </p>
+              <h3>For Drivers</h3>
+              <ul>
+                <li>Instant onboarding – register, upload your documents, and start receiving shift alerts within minutes.</li>
+                <li>Live shift control – start, pause, and finish jobs with clear status tracking and optional photo proof.</li>
+                <li>Flexible coverage – choose which depots you want alerts from and when you’re available to work.</li>
+                <li>Simple invoicing – generate invoices automatically from your completed shifts and send them straight to head office.</li>
+              </ul>
             </article>
             <article class="feature-card">
-              <h3>Driver-first UX</h3>
-              <p>
-                Built with our founding drivers, the mobile app surfaces earnings, proof tasks, and
-                support chat on the same screen—no guesswork, no grey areas.
-              </p>
-            </article>
-            <article class="feature-card">
-              <h3>Proof that persuades</h3>
-              <p>
-                High-resolution photo capture, signature hand-off, and geotagged timestamps funnel into
-                instant client-ready reports.
-              </p>
-            </article>
-            <article class="feature-card">
-              <h3>Compliance handled</h3>
-              <p>
-                Automatic right-to-work checks, insurance reminders, and vehicle logbooks keep your fleet
-                road-ready and audit-proof.
-              </p>
+              <h3>For Dispatchers</h3>
+              <ul>
+                <li>Create and fill rounds in seconds – a guided flow walks you through setting depots, times, and pay details.</li>
+                <li>Broadcast-ready posts – publish jobs to the driver group with claim buttons for instant response.</li>
+                <li>Driver management tools – view and update driver profiles, check active jobs, and maintain depot settings.</li>
+                <li>Live data &amp; reporting – every action is logged in a shared Google Sheet, giving instant oversight on who’s working where and when.</li>
+              </ul>
             </article>
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="timeline-title" style="background: white;">
+      <section aria-labelledby="why-title">
         <div class="section-inner">
-          <h2 id="timeline-title">From briefing to full launch in three steps.</h2>
-          <div class="timeline">
-            <div class="timeline-step">
-              <h3>1. Discovery with your stakeholders</h3>
-              <p>
-                We map your must-haves, agree KPIs, and connect the Delivery Manager to your existing
-                booking systems or spreadsheets.
-              </p>
-            </div>
-            <div class="timeline-step">
-              <h3>2. Pilot with co-branded onboarding</h3>
-              <p>
-                A curated driver cohort trials routes within 10 working days. Feedback loops directly into
-                dashboards before you scale.
-              </p>
-            </div>
-            <div class="timeline-step">
-              <h3>3. Scale with confidence</h3>
-              <p>
-                Dedicated Kinsman success specialists monitor SLAs, provide training refreshers, and unlock
-                advanced analytics as volumes grow.
-              </p>
-            </div>
-          </div>
-          <div class="metrics-grid" role="list" aria-label="Delivery Manager impact highlights">
-            <div class="metric-card" role="listitem">
-              <strong>98%</strong>
-              On-time success across beta partners
-            </div>
-            <div class="metric-card" role="listitem">
-              <strong>15 min</strong>
-              Average driver onboarding time
-            </div>
-            <div class="metric-card" role="listitem">
-              <strong>24/7</strong>
-              Support from experienced route leads
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="integration-title">
-        <div class="section-inner">
-          <h2 id="integration-title">Integrates with the tools you already trust.</h2>
-          <p style="max-width: 640px; line-height: 1.7; font-size: 1.05rem;">
-            Webhooks, CSV imports, and secure APIs connect the Delivery Manager to depot scanners,
-            e-commerce platforms, and customer service desks. Whether you dispatch from spreadsheets or a
-            bespoke TMS, we plug straight in and keep the data flowing.
+          <h2 id="why-title">Why It Works</h2>
+          <p style="max-width: 720px; line-height: 1.7; font-size: 1.05rem;">
+            The Kinsman Courier App was built for real operations—not theory. It keeps everything
+            Telegram-based for simplicity and speed, and because every delivery partner already uses
+            it daily.
           </p>
-          <div class="feature-grid" style="margin-top: 32px;">
+          <p style="max-width: 720px; line-height: 1.7; font-size: 1.05rem;">
+            It’s lightweight, reliable, and perfectly suited for courier networks that need to adapt
+            fast, manage dozens of shifts on the fly, and keep everyone connected without layers of
+            tech in the way.
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="key-features-title">
+        <div class="section-inner">
+          <h2 id="key-features-title">Key Features</h2>
+          <div class="feature-grid">
             <article class="feature-card">
-              <h3>Actionable analytics</h3>
-              <p>
-                Surface route heatmaps, drop density, and service recovery trends in seconds with exports for
-                stakeholders.
-              </p>
+              <h3>Telegram-native interface</h3>
+              <p>No separate app to install—everyone joins from the chat they already use.</p>
             </article>
             <article class="feature-card">
-              <h3>Role-based permissions</h3>
-              <p>
-                Give controllers, client services, and drivers the precise access they need—nothing more,
-                nothing less.
-              </p>
+              <h3>Real-time Google Sheets sync</h3>
+              <p>Operations data flows instantly into shared sheets for live oversight and audit trails.</p>
             </article>
             <article class="feature-card">
-              <h3>Scales across regions</h3>
-              <p>
-                Launch new depots without rebuilding processes. Templates and automations accelerate every
-                roll-out.
-              </p>
+              <h3>Role-based menus</h3>
+              <p>Secure workflows tailored for drivers, dispatch, and depot managers.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Automated invoicing</h3>
+              <p>Generate email-ready summaries straight from completed shifts.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Single-process reliability</h3>
+              <p>Designed for single-process, high-reliability deployment that keeps running under pressure.</p>
+            </article>
+            <article class="feature-card">
+              <h3>Kinsman ready</h3>
+              <p>Fully compatible with existing Kinsman systems and relief playbooks.</p>
             </article>
           </div>
         </div>
@@ -538,14 +489,22 @@
       <section class="cta-section" aria-labelledby="cta-title">
         <div class="cta-inner">
           <img
-            src="assets/Kinsman%20crown.png"
+            src="assets/kinsman-crown.png"
             alt="Kinsman crown icon"
             style="width: 90px; margin: 0 auto 24px; display: block; transform: rotate(-8deg);"
           />
-          <h2 id="cta-title" style="color: white;">Ready to crown your courier control?</h2>
-          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 28px;">
-            Partner with a team that codes, tests, and delivers alongside the drivers. Let’s tailor the
-            Delivery Manager to your network and put a professional sheen on every mile.
+          <p
+            style="letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px;"
+          >
+            The Result
+          </p>
+          <h2 id="cta-title" style="color: white;">Less chaos, more control.</h2>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 16px;">
+            With Kinsman Courier, every round, shift, and update happens in one connected space—from
+            the first parcel picked up to the last delivery logged.
+          </p>
+          <p style="font-size: 1rem; line-height: 1.7; margin-bottom: 28px;">
+            It’s fast, fair, and built for the people who actually make deliveries happen.
           </p>
           <a
             class="btn btn-primary"
