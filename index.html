@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kinsman Courier | Delivering with care—couriers you can crown.</title>
+    <meta
+      name="description"
+      content="Kinsman Courier provides fast, fair courier coverage with vetted local drivers, live status updates, and transparent reporting."
+    />
+    <link rel="canonical" href="https://kinsmancourier.example/" />
+    <link rel="icon" type="image/png" href="/assets/kinsman_logo_blue.png" />
+    <meta property="og:title" content="Kinsman Courier" />
+    <meta
+      property="og:description"
+      content="Fair work, fast coverage, and transparent courier services powered by local professionals."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/IMG_4197.jpeg" />
+    <meta property="og:url" content="https://kinsmancourier.example/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Kinsman Courier",
+        "url": "https://kinsmancourier.example/",
+        "logo": "https://kinsmancourier.example/assets/kinsman_logo_blue.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "hello@kinsmancourier.example",
+          "telephone": "+44 1234 567 890"
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Brand colour tokens */
+      :root {
+        --blue: #0c4da2;
+        --navy: #0a2e5d;
+        --gold: #c79a2b;
+        --cream: #f6f2ea;
+        --ink: #0e1320;
+        --line: #e7e2d9;
+        --shadow: rgba(10, 46, 93, 0.03);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          sans-serif;
+        background: var(--cream);
+        color: var(--ink);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* Sticky global navigation */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(246, 242, 234, 0.9);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .top-bar {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 14px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: var(--navy);
+      }
+
+      .brand img {
+        width: 40px;
+        height: auto;
+      }
+
+      nav {
+        display: flex;
+        gap: 20px;
+        font-weight: 600;
+      }
+
+      nav a {
+        color: var(--navy);
+        padding: 4px 0;
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      section {
+        padding: 32px 0;
+      }
+
+      /* Hero layout: two-column grid collapsing on mobile */
+      .hero {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 48px;
+        align-items: center;
+      }
+
+      .badge {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--navy);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .badge::before,
+      .badge::after {
+        content: '';
+        width: 16px;
+        height: 1px;
+        background: var(--line);
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 3.2vw + 1.6rem, 3.6rem);
+        margin: 12px 0 16px;
+        color: var(--navy);
+        font-weight: 800;
+      }
+
+      p {
+        line-height: 1.6;
+        margin: 0 0 16px;
+      }
+
+      .lead {
+        font-size: 1.125rem;
+        color: var(--ink);
+      }
+
+      .cta-group {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      /* Button styles */
+      .btn {
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: transform 0.15s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-primary {
+        background: var(--blue);
+        color: #fff;
+        border: 2px solid var(--blue);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--blue);
+        border: 2px solid var(--blue);
+      }
+
+      .btn:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 2px;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .hero-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: 0 10px 30px var(--shadow);
+        overflow: hidden;
+      }
+
+      .ribbon {
+        height: 4px;
+        background: linear-gradient(90deg, var(--gold), var(--blue));
+      }
+
+      /* Benefit cards grid */
+      .benefits {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 48px;
+      }
+
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 10px 30px var(--shadow);
+      }
+
+      .card h3 {
+        margin-top: 16px;
+        margin-bottom: 12px;
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 1.15rem;
+      }
+
+      .about-list {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      .about-list li::before {
+        content: '•';
+        margin-right: 8px;
+        color: var(--gold);
+      }
+
+      .callout {
+        margin-top: 32px;
+      }
+
+      .callout h3 {
+        margin: 16px 0 12px;
+      }
+
+      form {
+        display: grid;
+        gap: 16px;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      input,
+      select,
+      textarea {
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        font: inherit;
+        color: var(--ink);
+        background: #fff;
+      }
+
+      textarea {
+        min-height: 120px;
+      }
+
+      input:focus-visible,
+      select:focus-visible,
+      textarea:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 1px;
+      }
+
+      .contact-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      footer {
+        padding: 32px 24px 48px;
+        text-align: center;
+        color: var(--navy);
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 940px) {
+        nav {
+          display: none;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-card {
+          max-width: 420px;
+          margin: 0 auto;
+        }
+
+        .benefits {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media print {
+        header,
+        .cta-group,
+        .btn,
+        footer {
+          display: none !important;
+        }
+
+        main {
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="top-bar">
+        <a class="brand" href="#home">
+          <img src="/assets/kinsman_logo_blue.png" alt="Kinsman Courier crown logo" />
+          <span>KINSMAN COURIER</span>
+        </a>
+        <nav aria-label="Primary">
+          <a href="#home">Home</a>
+          <a href="#about">About us</a>
+          <a href="#become">Become a Kinsman</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section id="home" class="hero" aria-labelledby="home-title">
+        <div>
+          <span class="badge">Reliable • Friendly • Royal Service</span>
+          <h1 id="home-title">Delivering with care—couriers you can crown.</h1>
+          <p class="lead">
+            Fast, dependable deliveries with a community-first heart. From urgent runs to
+            scheduled routes, Kinsman gets it there.
+          </p>
+          <div class="cta-group">
+            <a class="btn btn-primary" href="#contact">Book a delivery</a>
+            <a class="btn btn-ghost" href="#become">Become a Kinsman</a>
+          </div>
+        </div>
+        <div class="hero-card" role="presentation">
+          <div class="ribbon" aria-hidden="true"></div>
+          <img src="/assets/IMG_4197.jpeg" alt="Kinsman Courier brand mark with crown" />
+        </div>
+      </section>
+
+      <section aria-labelledby="benefits-title">
+        <h2 id="benefits-title" style="color: var(--navy); font-weight: 700; font-size: 1.8rem;">
+          Why carriers choose Kinsman
+        </h2>
+        <div class="benefits">
+          <article class="card">
+            <div class="ribbon" aria-hidden="true"></div>
+            <h3>Same-day &amp; Scheduled</h3>
+            <p>Urgent jobs or planned routes—choose the timing that fits your day.</p>
+          </article>
+          <article class="card">
+            <div class="ribbon" aria-hidden="true"></div>
+            <h3>Live Status &amp; Evidence</h3>
+            <p>Track progress and receive confirmations for every hand-off.</p>
+          </article>
+          <article class="card">
+            <div class="ribbon" aria-hidden="true"></div>
+            <h3>Local Pros</h3>
+            <p>Couriers who care—professional, polite, and community-minded.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="about" aria-labelledby="about-title">
+        <h2 id="about-title" style="color: var(--navy); font-weight: 700; font-size: 1.8rem;">
+          About us
+        </h2>
+        <p>
+          Kinsman Courier blends speed with service. The crown in our mark stands for dignity and
+          dependability—every package treated like it matters, because it does. Our vetted couriers
+          provide clear communication and proof of delivery so you always know where things stand.
+        </p>
+        <ul class="about-list" aria-label="Key service pillars">
+          <li>Coverage within hours</li>
+          <li>Driver verification</li>
+          <li>Transparent reporting</li>
+        </ul>
+        <article class="card callout" aria-labelledby="evri-title">
+          <div class="ribbon" aria-hidden="true"></div>
+          <h3 id="evri-title">Flexible Driver Coverage for Evri Routes</h3>
+          <ul>
+            <li>Lower coverage costs vs LCBs</li>
+            <li>Faster response on failed routes</li>
+            <li>Verified &amp; insured drivers (many already deliver for Evri/DPD/Amazon)</li>
+            <li>Fill within hours; transparent reporting</li>
+          </ul>
+        </article>
+      </section>
+
+      <section id="become" aria-labelledby="become-title">
+        <h2 id="become-title" style="color: var(--navy); font-weight: 700; font-size: 1.8rem;">
+          Become a Kinsman
+        </h2>
+        <p>
+          Join our courier community. Set your availability, claim jobs, and deliver with pride.
+          Complete the form and we’ll get back to you with next steps.
+        </p>
+        <form action="mailto:hello@kinsmancourier.example" method="post" enctype="text/plain">
+          <!-- TODO: Replace mailto action with secure backend endpoint when available. -->
+          <label for="name">Full name
+            <input id="name" name="Full Name" type="text" autocomplete="name" required />
+          </label>
+          <label for="email">Email
+            <input id="email" name="Email" type="email" autocomplete="email" required />
+          </label>
+          <label for="phone">Phone
+            <input id="phone" name="Phone" type="tel" autocomplete="tel" required />
+          </label>
+          <label for="vehicle">Vehicle
+            <select id="vehicle" name="Vehicle" required>
+              <option value="" disabled selected>Select your vehicle</option>
+              <option>Car</option>
+              <option>Small Van</option>
+              <option>Large Van</option>
+              <option>Bike</option>
+            </select>
+          </label>
+          <label for="notes">Notes (optional)
+            <textarea id="notes" name="Notes" placeholder="Availability, experience, questions"></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Send application</button>
+          <p style="font-size: 0.9rem; color: var(--ink);">
+            By applying, you confirm you hold required documents to work as a courier.
+          </p>
+        </form>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title" style="color: var(--navy); font-weight: 700; font-size: 1.8rem;">
+          Contact
+        </h2>
+        <article class="card contact-card">
+          <div class="ribbon" aria-hidden="true"></div>
+          <p>
+            Email: <a href="mailto:hello@kinsmancourier.example">hello@kinsmancourier.example</a>
+          </p>
+          <p>Phone: <a href="tel:+441234567890">+44 1234 567 890</a></p>
+          <p>Hours: Monday – Saturday, 7am to 8pm</p>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <small id="copyright"></small>
+    </footer>
+    <script>
+      const year = new Date().getFullYear();
+      const el = document.getElementById('copyright');
+      if (el) {
+        el.textContent = `© ${year} Kinsman Courier. All rights reserved.`;
+      }
+    </script>
+  </body>
+</html>
