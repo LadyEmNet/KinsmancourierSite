@@ -76,14 +76,17 @@
         border-bottom: 1px solid var(--line);
       }
 
+      body.menu-open {
+        overflow: hidden;
+      }
+
       .top-bar {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 14px 24px;
+        padding: clamp(12px, 2.5vw, 20px) clamp(20px, 5vw, 36px);
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 24px;
+        gap: 20px;
       }
 
       .brand {
@@ -97,35 +100,174 @@
       }
 
       .brand img {
-        width: 44px;
+        width: 48px;
         height: auto;
-        border-radius: 8px;
+        border-radius: 12px;
         box-shadow: 0 12px 30px rgba(12, 77, 162, 0.18);
       }
 
-      nav {
+      .primary-nav {
         display: flex;
-        gap: 20px;
+        align-items: center;
+        margin-left: auto;
         font-weight: 600;
-        flex-wrap: wrap;
+        gap: clamp(16px, 2vw, 24px);
+        justify-content: flex-end;
       }
 
-      nav a {
-        padding: 8px 14px;
-        border-radius: 999px;
-        transition: background 0.2s ease, color 0.2s ease;
-      }
-
-      nav a:hover,
-      nav a:focus {
-        background: rgba(12, 77, 162, 0.08);
+      .primary-nav a {
+        position: relative;
+        padding: 8px 0;
         color: var(--navy);
+        transition: color 0.2s ease;
       }
 
-      nav a[aria-current='page'] {
-        background: var(--navy);
-        color: white;
-        box-shadow: 0 6px 18px rgba(10, 46, 93, 0.28);
+      .primary-nav a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+
+      .primary-nav a:hover,
+      .primary-nav a:focus-visible,
+      .primary-nav a[aria-current='page'] {
+        color: var(--blue);
+      }
+
+      .primary-nav a:hover::after,
+      .primary-nav a:focus-visible::after,
+      .primary-nav a[aria-current='page']::after {
+        transform: scaleX(1);
+      }
+
+      .menu-toggle {
+        display: none;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid var(--line);
+        background: rgba(246, 242, 234, 0.85);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        color: var(--navy);
+        cursor: pointer;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      }
+
+      .menu-toggle:hover,
+      .menu-toggle:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--blue);
+        box-shadow: 0 12px 24px rgba(12, 77, 162, 0.15);
+      }
+
+      .menu-toggle:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .menu-icon {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .menu-icon span {
+        width: 18px;
+        height: 2px;
+        border-radius: 999px;
+        background: currentColor;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      body.menu-open .menu-icon span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      body.menu-open .menu-icon span:nth-child(2) {
+        opacity: 0;
+      }
+
+      body.menu-open .menu-icon span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      .nav-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(14, 19, 32, 0.4);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      body.menu-open .nav-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      @media (max-width: 860px) {
+        .primary-nav {
+          position: fixed;
+          inset: 88px 16px auto;
+          margin: 0;
+          padding: 24px;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 12px;
+          background: rgba(246, 242, 234, 0.96);
+          border-radius: 24px;
+          border: 1px solid var(--line);
+          box-shadow: 0 24px 60px rgba(10, 46, 93, 0.2);
+          opacity: 0;
+          transform: translateY(-16px);
+          pointer-events: none;
+          transition: opacity 0.3s ease, transform 0.3s ease;
+          max-height: calc(100vh - 120px);
+          overflow-y: auto;
+          z-index: 110;
+        }
+
+        body.menu-open .primary-nav {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+
+        .primary-nav a {
+          width: 100%;
+          padding: 12px 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .primary-nav a:last-child {
+          border-bottom: none;
+        }
+
+        .primary-nav a::after {
+          display: none;
+        }
+
+        .primary-nav a[aria-current='page'] {
+          color: var(--blue);
+          font-weight: 700;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          margin-left: auto;
+        }
       }
 
       main {
@@ -135,7 +277,7 @@
       .hero {
         position: relative;
         overflow: hidden;
-        padding: 96px 24px 72px;
+        padding: clamp(88px, 10vw, 120px) clamp(20px, 5vw, 36px) clamp(72px, 9vw, 96px);
         background: linear-gradient(135deg, rgba(12, 77, 162, 0.92), rgba(10, 46, 93, 0.92)),
           url('assets/IMG_4197.jpeg') no-repeat center/cover;
         color: white;
@@ -156,7 +298,7 @@
         max-width: 1100px;
         margin: 0 auto;
         display: grid;
-        gap: 48px;
+        gap: clamp(32px, 6vw, 56px);
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         align-items: center;
       }
@@ -223,7 +365,7 @@
         position: relative;
         background: rgba(246, 242, 234, 0.96);
         border-radius: 28px;
-        padding: 28px;
+        padding: clamp(24px, 5vw, 32px);
         box-shadow: 0 18px 40px rgba(10, 46, 93, 0.28);
         text-align: center;
         color: var(--ink);
@@ -244,7 +386,7 @@
       }
 
       section {
-        padding: 96px 24px;
+        padding: clamp(72px, 9vw, 110px) clamp(20px, 5vw, 36px);
       }
 
       .section-inner {
@@ -267,7 +409,7 @@
       .feature-card {
         background: white;
         border-radius: 24px;
-        padding: 28px;
+        padding: clamp(24px, 5vw, 32px);
         box-shadow: 0 18px 35px var(--shadow);
         border: 1px solid rgba(12, 77, 162, 0.08);
       }
@@ -296,7 +438,7 @@
         background: linear-gradient(135deg, rgba(12, 77, 162, 0.92), rgba(10, 46, 93, 0.92));
         color: white;
         text-align: center;
-        padding: 88px 24px;
+        padding: clamp(72px, 9vw, 96px) clamp(20px, 5vw, 36px);
       }
 
       .cta-section .cta-inner {
@@ -307,7 +449,7 @@
       footer {
         background: rgba(10, 46, 93, 0.96);
         color: rgba(255, 255, 255, 0.8);
-        padding: 32px 24px;
+        padding: clamp(32px, 6vw, 48px) clamp(20px, 5vw, 32px);
         text-align: center;
       }
 
@@ -336,10 +478,24 @@
     <header>
       <div class="top-bar">
         <a class="brand" href="index.html">
-          <img src="assets/IMG_4197.jpeg" alt="Kinsman Courier logo" />
-          Kinsman Courier
+          <img src="assets/IMG_4197.jpeg" alt="Kinsman Courier driver logo" />
+          <span>Kinsman Courier</span>
         </a>
-        <nav>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-controls="secondary-navigation"
+          aria-expanded="false"
+        >
+          <span class="menu-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span class="menu-label">Menu</span>
+        </button>
+        <nav id="secondary-navigation" class="primary-nav" aria-label="Secondary">
           <a href="index.html">Home</a>
           <a href="index.html#about">About us</a>
           <a href="delivery-manager.html" aria-current="page">Delivery Manager</a>
@@ -347,6 +503,7 @@
           <a href="index.html#contact">Contact</a>
         </nav>
       </div>
+      <div class="nav-backdrop" hidden></div>
     </header>
     <main>
       <section class="hero" id="hero">
@@ -523,10 +680,98 @@
       </p>
     </footer>
     <script>
-      const yearEl = document.getElementById('year');
-      if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-      }
+      (() => {
+        const yearEl = document.getElementById('year');
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
+
+        const body = document.body;
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.getElementById('secondary-navigation');
+        const navBackdrop = document.querySelector('.nav-backdrop');
+        const desktopQuery =
+          typeof window !== 'undefined' ? window.matchMedia('(min-width: 861px)') : null;
+
+        if (!menuToggle || !nav) {
+          return;
+        }
+
+        const syncNavAria = () => {
+          if (!desktopQuery) {
+            nav.removeAttribute('aria-hidden');
+            return;
+          }
+          if (desktopQuery.matches) {
+            nav.removeAttribute('aria-hidden');
+          } else {
+            nav.setAttribute('aria-hidden', body.classList.contains('menu-open') ? 'false' : 'true');
+          }
+        };
+
+        const closeMenu = () => {
+          body.classList.remove('menu-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.setAttribute('aria-label', 'Open navigation menu');
+          if (navBackdrop) {
+            navBackdrop.hidden = true;
+          }
+          syncNavAria();
+        };
+
+        const openMenu = () => {
+          body.classList.add('menu-open');
+          menuToggle.setAttribute('aria-expanded', 'true');
+          menuToggle.setAttribute('aria-label', 'Close navigation menu');
+          if (navBackdrop) {
+            navBackdrop.hidden = false;
+          }
+          syncNavAria();
+        };
+
+        syncNavAria();
+        if (navBackdrop) {
+          navBackdrop.hidden = true;
+        }
+
+        menuToggle.addEventListener('click', () => {
+          if (body.classList.contains('menu-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+
+        if (navBackdrop) {
+          navBackdrop.addEventListener('click', closeMenu);
+        }
+
+        nav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            if (desktopQuery && desktopQuery.matches) {
+              return;
+            }
+            closeMenu();
+          });
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && body.classList.contains('menu-open')) {
+            closeMenu();
+            menuToggle.focus();
+          }
+        });
+
+        if (desktopQuery) {
+          desktopQuery.addEventListener('change', (event) => {
+            if (event.matches) {
+              closeMenu();
+            } else {
+              syncNavAria();
+            }
+          });
+        }
+      })();
     </script>
   </body>
 </html>
