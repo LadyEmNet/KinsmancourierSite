@@ -16,26 +16,463 @@
       content="Smart delivery coordination built for real-world operations. The Kinsman Courier App keeps relief routes and daily rounds in sync."
     />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:image"
-      content="https://kinsmancourier.com/assets/IMG_4197.jpeg"
-    />
+    <meta property="og:image" content="assets/IMG_4197.jpeg" />
     <meta property="og:url" content="https://kinsmancourier.com/delivery-manager" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'sha256-/AkQXgoN5bdRd14ay8XVaGbjReiUyZsGq21mvxy7idA='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co; upgrade-insecure-requests; block-all-mixed-content"
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
     />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta
-      http-equiv="Permissions-Policy"
-      content="geolocation=(), camera=(), microphone=()"
-    />
-    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin" />
-    <meta http-equiv="Cross-Origin-Resource-Policy" content="same-origin" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/delivery-manager.css" />
-    
+    <style>
+      :root {
+        --blue: #0c4da2;
+        --navy: #0a2e5d;
+        --gold: #c79a2b;
+        --cream: #f6f2ea;
+        --ink: #0e1320;
+        --line: #e7e2d9;
+        --shadow: rgba(10, 46, 93, 0.08);
+        --glow: rgba(199, 154, 43, 0.25);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          sans-serif;
+        background: radial-gradient(circle at top right, rgba(199, 154, 43, 0.08), transparent),
+          var(--cream);
+        color: var(--ink);
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(246, 242, 234, 0.92);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      .top-bar {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: clamp(12px, 2.5vw, 20px) clamp(20px, 5vw, 36px);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: var(--navy);
+        text-transform: uppercase;
+      }
+
+      .brand img {
+        width: 48px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 12px 30px rgba(12, 77, 162, 0.18);
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        font-weight: 600;
+        gap: clamp(16px, 2vw, 24px);
+        justify-content: flex-end;
+      }
+
+      .primary-nav a {
+        position: relative;
+        padding: 8px 0;
+        color: var(--navy);
+        transition: color 0.2s ease;
+      }
+
+      .primary-nav a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 100%;
+        height: 2px;
+        background: var(--gold);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+
+      .primary-nav a:hover,
+      .primary-nav a:focus-visible,
+      .primary-nav a[aria-current='page'] {
+        color: var(--blue);
+      }
+
+      .primary-nav a:hover::after,
+      .primary-nav a:focus-visible::after,
+      .primary-nav a[aria-current='page']::after {
+        transform: scaleX(1);
+      }
+
+      .menu-toggle {
+        display: none;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid var(--line);
+        background: rgba(246, 242, 234, 0.85);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        color: var(--navy);
+        cursor: pointer;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      }
+
+      .menu-toggle:hover,
+      .menu-toggle:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--blue);
+        box-shadow: 0 12px 24px rgba(12, 77, 162, 0.15);
+      }
+
+      .menu-toggle:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .menu-icon {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .menu-icon span {
+        width: 18px;
+        height: 2px;
+        border-radius: 999px;
+        background: currentColor;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      body.menu-open .menu-icon span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      body.menu-open .menu-icon span:nth-child(2) {
+        opacity: 0;
+      }
+
+      body.menu-open .menu-icon span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      .nav-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(14, 19, 32, 0.4);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      body.menu-open .nav-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      @media (max-width: 860px) {
+        .primary-nav {
+          position: fixed;
+          inset: 88px 16px auto;
+          margin: 0;
+          padding: 24px;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 12px;
+          background: rgba(246, 242, 234, 0.96);
+          border-radius: 24px;
+          border: 1px solid var(--line);
+          box-shadow: 0 24px 60px rgba(10, 46, 93, 0.2);
+          opacity: 0;
+          transform: translateY(-16px);
+          pointer-events: none;
+          transition: opacity 0.3s ease, transform 0.3s ease;
+          max-height: calc(100vh - 120px);
+          overflow-y: auto;
+          z-index: 110;
+        }
+
+        body.menu-open .primary-nav {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+
+        .primary-nav a {
+          width: 100%;
+          padding: 12px 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .primary-nav a:last-child {
+          border-bottom: none;
+        }
+
+        .primary-nav a::after {
+          display: none;
+        }
+
+        .primary-nav a[aria-current='page'] {
+          color: var(--blue);
+          font-weight: 700;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          margin-left: auto;
+        }
+      }
+
+      main {
+        flex: 1 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(88px, 10vw, 120px) clamp(20px, 5vw, 36px) clamp(72px, 9vw, 96px);
+        background: linear-gradient(135deg, rgba(12, 77, 162, 0.92), rgba(10, 46, 93, 0.92)),
+          url('assets/IMG_4197.jpeg') no-repeat center/cover;
+        color: white;
+      }
+
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 20% 20%, rgba(199, 154, 43, 0.45), transparent);
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        gap: clamp(32px, 6vw, 56px);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: center;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2.4rem, 4vw + 1rem, 3.4rem);
+        line-height: 1.05;
+        margin-bottom: 16px;
+      }
+
+      .hero-copy .hero-subtitle {
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 18px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .hero-copy p {
+        font-size: 1.1rem;
+        margin-bottom: 24px;
+        max-width: 520px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 22px;
+        border-radius: 999px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn-primary {
+        background: var(--gold);
+        color: var(--navy);
+        box-shadow: 0 12px 30px rgba(199, 154, 43, 0.35);
+      }
+
+      .btn-primary:hover,
+      .btn-primary:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 36px rgba(199, 154, 43, 0.45);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        color: white;
+      }
+
+      .qr-card {
+        position: relative;
+        background: rgba(246, 242, 234, 0.96);
+        border-radius: 28px;
+        padding: clamp(24px, 5vw, 32px);
+        box-shadow: 0 18px 40px rgba(10, 46, 93, 0.28);
+        text-align: center;
+        color: var(--ink);
+      }
+
+      .qr-card img {
+        border-radius: 16px;
+        box-shadow: 0 10px 24px rgba(10, 46, 93, 0.22);
+      }
+
+      .qr-card .crown {
+        position: absolute;
+        width: 70px;
+        top: -32px;
+        right: 24px;
+        transform: rotate(-12deg);
+        filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.18));
+      }
+
+      section {
+        padding: clamp(72px, 9vw, 110px) clamp(20px, 5vw, 36px);
+      }
+
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 3vw + 1rem, 2.6rem);
+        color: var(--navy);
+        margin-bottom: 24px;
+      }
+
+      .feature-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 24px;
+        padding: clamp(24px, 5vw, 32px);
+        box-shadow: 0 18px 35px var(--shadow);
+        border: 1px solid rgba(12, 77, 162, 0.08);
+      }
+
+      .feature-card h3 {
+        font-size: 1.3rem;
+        color: var(--navy);
+        margin-bottom: 12px;
+      }
+
+      .feature-card p {
+        line-height: 1.6;
+      }
+
+      .feature-card ul {
+        padding-left: 20px;
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .feature-card ul li + li {
+        margin-top: 8px;
+      }
+
+      .cta-section {
+        background: linear-gradient(135deg, rgba(12, 77, 162, 0.92), rgba(10, 46, 93, 0.92));
+        color: white;
+        text-align: center;
+        padding: clamp(72px, 9vw, 96px) clamp(20px, 5vw, 36px);
+      }
+
+      .cta-section .cta-inner {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      footer {
+        background: rgba(10, 46, 93, 0.96);
+        color: rgba(255, 255, 255, 0.8);
+        padding: clamp(32px, 6vw, 48px) clamp(20px, 5vw, 32px);
+        text-align: center;
+      }
+
+      footer a {
+        color: rgba(255, 255, 255, 0.92);
+        font-weight: 600;
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          padding: 72px 18px 56px;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .qr-card {
+          margin-top: 12px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -97,9 +534,11 @@
           </div>
           <div class="qr-card" aria-labelledby="qr-title">
             <img class="crown" src="assets/kinsman-crown.png" alt="Leaning Kinsman crown" />
-            <h2 id="qr-title" class="qr-title">Scan &amp; register in minutes</h2>
+            <h2 id="qr-title" style="font-size: 1.2rem; margin-bottom: 16px; color: var(--navy);">
+              Scan &amp; register in minutes
+            </h2>
             <img src="assets/QRkinsman.png" alt="QR code to register for the Kinsman Delivery Manager" />
-            <p class="qr-note">
+            <p style="margin-top: 16px; color: var(--ink);">
               Drivers and depot leads can self-onboard, upload documents, and accept routes straight
               from their phones.
             </p>
@@ -130,7 +569,7 @@
         </div>
       </section>
 
-      <section aria-labelledby="audiences-title" class="section alt">
+      <section aria-labelledby="audiences-title" style="background: white;">
         <div class="section-inner">
           <h2 id="audiences-title">For Drivers &amp; Dispatchers</h2>
           <div class="feature-grid">
@@ -159,12 +598,12 @@
       <section aria-labelledby="why-title">
         <div class="section-inner">
           <h2 id="why-title">Why It Works</h2>
-          <p>
+          <p style="max-width: 720px; line-height: 1.7; font-size: 1.05rem;">
             The Kinsman Courier App was built for real operations—not theory. It keeps everything
             Telegram-based for simplicity and speed, and because every delivery partner already uses
             it daily.
           </p>
-          <p>
+          <p style="max-width: 720px; line-height: 1.7; font-size: 1.05rem;">
             It’s lightweight, reliable, and perfectly suited for courier networks that need to adapt
             fast, manage dozens of shifts on the fly, and keep everyone connected without layers of
             tech in the way.
@@ -206,19 +645,28 @@
 
       <section class="cta-section" aria-labelledby="cta-title">
         <div class="cta-inner">
-          <img src="assets/kinsman-crown.png" alt="Kinsman crown icon" />
-          <p class="cta-eyebrow">The Result</p>
-          <h2 id="cta-title">Less chaos, more control.</h2>
-          <p class="cta-description">
+          <img
+            src="assets/kinsman-crown.png"
+            alt="Kinsman crown icon"
+            style="width: 90px; margin: 0 auto 24px; display: block; transform: rotate(-8deg);"
+          />
+          <p
+            style="letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; margin-bottom: 12px;"
+          >
+            The Result
+          </p>
+          <h2 id="cta-title" style="color: white;">Less chaos, more control.</h2>
+          <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 16px;">
             With Kinsman Courier, every round, shift, and update happens in one connected space—from
             the first parcel picked up to the last delivery logged.
           </p>
-          <p class="cta-subcopy">
+          <p style="font-size: 1rem; line-height: 1.7; margin-bottom: 28px;">
             It’s fast, fair, and built for the people who actually make deliveries happen.
           </p>
           <a
             class="btn btn-primary"
             href="mailto:hello@kinsmancourier.com?subject=Delivery%20Manager%20consultation"
+            style="font-size: 1rem;"
           >
             Schedule your consultation
           </a>
@@ -226,11 +674,104 @@
       </section>
     </main>
     <footer>
-      <p class="footer-note">© <span id="year"></span> Kinsman Courier. All rights reserved.</p>
+      <p style="margin-bottom: 12px;">© <span id="year"></span> Kinsman Courier. All rights reserved.</p>
       <p>
         <a href="index.html">Return to KinsmanCourier.com</a>
       </p>
     </footer>
-    <script src="assets/js/delivery-manager.js" defer></script>
+    <script>
+      (() => {
+        const yearEl = document.getElementById('year');
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
+
+        const body = document.body;
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.getElementById('secondary-navigation');
+        const navBackdrop = document.querySelector('.nav-backdrop');
+        const desktopQuery =
+          typeof window !== 'undefined' ? window.matchMedia('(min-width: 861px)') : null;
+
+        if (!menuToggle || !nav) {
+          return;
+        }
+
+        const syncNavAria = () => {
+          if (!desktopQuery) {
+            nav.removeAttribute('aria-hidden');
+            return;
+          }
+          if (desktopQuery.matches) {
+            nav.removeAttribute('aria-hidden');
+          } else {
+            nav.setAttribute('aria-hidden', body.classList.contains('menu-open') ? 'false' : 'true');
+          }
+        };
+
+        const closeMenu = () => {
+          body.classList.remove('menu-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.setAttribute('aria-label', 'Open navigation menu');
+          if (navBackdrop) {
+            navBackdrop.hidden = true;
+          }
+          syncNavAria();
+        };
+
+        const openMenu = () => {
+          body.classList.add('menu-open');
+          menuToggle.setAttribute('aria-expanded', 'true');
+          menuToggle.setAttribute('aria-label', 'Close navigation menu');
+          if (navBackdrop) {
+            navBackdrop.hidden = false;
+          }
+          syncNavAria();
+        };
+
+        syncNavAria();
+        if (navBackdrop) {
+          navBackdrop.hidden = true;
+        }
+
+        menuToggle.addEventListener('click', () => {
+          if (body.classList.contains('menu-open')) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        });
+
+        if (navBackdrop) {
+          navBackdrop.addEventListener('click', closeMenu);
+        }
+
+        nav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            if (desktopQuery && desktopQuery.matches) {
+              return;
+            }
+            closeMenu();
+          });
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && body.classList.contains('menu-open')) {
+            closeMenu();
+            menuToggle.focus();
+          }
+        });
+
+        if (desktopQuery) {
+          desktopQuery.addEventListener('change', (event) => {
+            if (event.matches) {
+              closeMenu();
+            } else {
+              syncNavAria();
+            }
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
