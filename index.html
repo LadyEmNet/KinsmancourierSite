@@ -28,7 +28,7 @@
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer service",
-          "email": "hello@kinsmancourier.com",
+          "email": "contact@kinsmancourier.com",
           "telephone": "+44 1234 567 890"
         }
       }
@@ -792,6 +792,27 @@
         }
       }
 
+      @media (max-width: 600px) {
+        .brand span {
+          display: none;
+        }
+
+        .top-bar {
+          gap: 10px;
+        }
+
+        .menu-toggle {
+          padding-inline: 18px;
+        }
+
+        .mode-toggle {
+          padding: 10px 22px;
+          min-width: 170px;
+          justify-content: center;
+          white-space: nowrap;
+        }
+      }
+
     </style>
   </head>
   <body class="driver-mode">
@@ -1086,7 +1107,7 @@
         </p>
         <form
           class="driver-only"
-          action="mailto:hello@kinsmancourier.com"
+          action="mailto:contact@kinsmancourier.com"
           method="post"
           enctype="text/plain"
         >
@@ -1119,7 +1140,7 @@
         </form>
         <form
           class="depot-only"
-          action="mailto:hello@kinsmancourier.com"
+          action="mailto:contact@kinsmancourier.com"
           method="post"
           enctype="text/plain"
         >
@@ -1172,7 +1193,7 @@
             Urgent depot cover? Include your depot name and time window for a rapid call back.
           </p>
           <p>
-            Email: <a href="mailto:hello@kinsmancourier.com">hello@kinsmancourier.com</a>
+            Email: <a href="mailto:contact@kinsmancourier.com">contact@kinsmancourier.com</a>
           </p>
           <p>Hours: Monday – Saturday, 7am to 8pm</p>
         </article>
