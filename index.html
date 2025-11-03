@@ -16,23 +16,9 @@
       content="Fair work, fast coverage, and transparent courier services powered by local professionals."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://kinsmancourier.com/assets/IMG_4197.jpeg" />
+    <meta property="og:image" content="assets/IMG_4197.jpeg" />
     <meta property="og:url" content="https://kinsmancourier.com/" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'sha256-oQj/KDJ67xzNCNn3HflX7W8mO/0LjfPQO9m1w5ZBav4='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co; upgrade-insecure-requests; block-all-mixed-content"
-    />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta
-      http-equiv="Permissions-Policy"
-      content="geolocation=(), camera=(), microphone=()"
-    />
-    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin" />
-    <meta http-equiv="Cross-Origin-Resource-Policy" content="same-origin" />
-    <link rel="stylesheet" href="assets/css/base.css" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <script type="application/ld+json" id="org-schema">
+    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
@@ -42,11 +28,771 @@
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer service",
-          "email": "contact@kinsmancourier.com"
+          "email": "hello@kinsmancourier.com",
+          "telephone": "+44 1234 567 890"
         }
       }
     </script>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Brand colour tokens */
+      :root {
+        --blue: #0c4da2;
+        --navy: #0a2e5d;
+        --gold: #c79a2b;
+        --cream: #f6f2ea;
+        --ink: #0e1320;
+        --line: #e7e2d9;
+        --shadow: rgba(10, 46, 93, 0.03);
+        --surface: #ffffff;
+        --surface-alt: rgba(255, 255, 255, 0.9);
+        --page-bg: var(--cream);
+        --header-bg: rgba(246, 242, 234, 0.9);
+        --badge-line: var(--line);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          sans-serif;
+        background: var(--page-bg);
+        color: var(--ink);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--page-bg);
+        color: var(--ink);
+        transition: background 0.4s ease, color 0.4s ease;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .driver-only,
+      .depot-only {
+        transition: opacity 0.3s ease;
+      }
+
+      body.driver-mode .depot-only,
+      body.depot-mode .driver-only {
+        display: none !important;
+      }
+
+      /* Sticky global navigation */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--header-bg);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+        transition: background 0.4s ease, border-color 0.4s ease;
+      }
+
+      body.menu-open {
+        overflow: hidden;
+      }
+
+      .top-bar {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: clamp(12px, 2.5vw, 20px) clamp(20px, 5vw, 36px);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        color: var(--navy);
+      }
+
+      .brand img {
+        width: 48px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 12px 28px rgba(10, 46, 93, 0.18);
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        gap: clamp(16px, 2vw, 24px);
+        justify-content: flex-end;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(16px, 1.8vw, 22px);
+        font-weight: 600;
+      }
+
+      .nav-links a {
+        position: relative;
+        color: var(--navy);
+        padding: 6px 0;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 100%;
+        height: 2px;
+        background: var(--blue);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible,
+      .nav-links a[data-active='true'] {
+        color: var(--blue);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a:focus-visible::after,
+      .nav-links a[data-active='true']::after {
+        transform: scaleX(1);
+      }
+
+      .menu-toggle,
+      .mode-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        border: 1px solid var(--line);
+        background: var(--surface-alt);
+        border-radius: 999px;
+        padding: 6px 14px 6px 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+        color: var(--navy);
+      }
+
+      .menu-toggle {
+        display: none;
+        padding: 8px 16px;
+      }
+
+      .mode-toggle {
+        margin-left: 12px;
+      }
+
+      .menu-icon {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .menu-icon span {
+        width: 18px;
+        height: 2px;
+        border-radius: 999px;
+        background: currentColor;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .mode-toggle:hover,
+      .mode-toggle:focus-visible {
+        transform: translateY(-1px);
+        border-color: var(--blue);
+        box-shadow: 0 12px 24px var(--shadow);
+      }
+
+      .mode-toggle:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .mode-toggle img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 12px 24px rgba(10, 46, 93, 0.22);
+        transition: transform 0.3s ease;
+      }
+
+      .mode-toggle:hover img,
+      .mode-toggle:focus-visible img {
+        transform: scale(1.04);
+      }
+
+      .mode-toggle span {
+        pointer-events: none;
+      }
+
+      .nav-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(14, 19, 32, 0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      body.menu-open .nav-backdrop {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      body.menu-open .menu-icon span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+
+      body.menu-open .menu-icon span:nth-child(2) {
+        opacity: 0;
+      }
+
+      body.menu-open .menu-icon span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      body.depot-mode {
+        --blue: #55aef9;
+        --navy: #d6e8ff;
+        --gold: #8bc9ff;
+        --cream: #061128;
+        --ink: #e6f1ff;
+        --line: rgba(206, 226, 255, 0.25);
+        --shadow: rgba(3, 17, 38, 0.48);
+        --surface: rgba(8, 24, 51, 0.92);
+        --surface-alt: rgba(8, 26, 55, 0.82);
+        --page-bg: #061128;
+        --header-bg: rgba(6, 20, 45, 0.92);
+        --badge-line: rgba(96, 168, 255, 0.45);
+      }
+
+      body.depot-mode header {
+        border-bottom-color: rgba(206, 226, 255, 0.25);
+      }
+
+      body.depot-mode .brand img,
+      body.depot-mode .mode-toggle img {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      body.depot-mode .primary-nav a:hover,
+      body.depot-mode .primary-nav a:focus-visible {
+        color: var(--ink);
+      }
+
+      body.depot-mode .mode-toggle {
+        border-color: rgba(206, 226, 255, 0.35);
+        color: var(--ink);
+        box-shadow: none;
+      }
+
+      body.depot-mode .mode-toggle:hover,
+      body.depot-mode .mode-toggle:focus-visible {
+        border-color: rgba(206, 226, 255, 0.65);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      }
+
+      @media (max-width: 900px) {
+        .top-bar {
+          gap: 12px;
+        }
+
+        .primary-nav {
+          position: fixed;
+          inset: 88px 16px auto;
+          margin: 0;
+          padding: 24px;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          background: var(--surface);
+          border-radius: 24px;
+          border: 1px solid var(--line);
+          box-shadow: 0 24px 60px rgba(10, 46, 93, 0.18);
+          opacity: 0;
+          transform: translateY(-16px);
+          pointer-events: none;
+          transition: opacity 0.3s ease, transform 0.3s ease;
+          max-height: calc(100vh - 120px);
+          overflow-y: auto;
+          z-index: 110;
+        }
+
+        body.depot-mode .primary-nav {
+          border-color: rgba(206, 226, 255, 0.25);
+          box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        body.menu-open .primary-nav {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+
+        .nav-links {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          width: 100%;
+        }
+
+        .nav-links a {
+          padding: 12px 0;
+          font-size: 1.05rem;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .nav-links a:last-child {
+          border-bottom: none;
+        }
+
+        .nav-links a::after {
+          display: none;
+        }
+
+        .nav-links a[data-active='true'] {
+          color: var(--blue);
+          font-weight: 700;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          margin-left: auto;
+          order: 2;
+        }
+
+        .mode-toggle {
+          margin-left: 0;
+          order: 3;
+        }
+
+        .primary-nav {
+          order: 4;
+        }
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: clamp(32px, 6vw, 56px) clamp(20px, 5vw, 36px);
+      }
+
+      section {
+        padding-block: clamp(48px, 8vw, 88px);
+      }
+
+      section:first-of-type {
+        padding-top: clamp(32px, 6vw, 64px);
+      }
+
+      /* Hero layout: two-column grid collapsing on mobile */
+      .hero {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(32px, 6vw, 72px);
+        align-items: center;
+      }
+
+      .hero > :last-child {
+        justify-self: center;
+      }
+
+      .hero p {
+        max-width: 560px;
+      }
+
+      body.depot-mode .hero {
+        background: linear-gradient(135deg, rgba(6, 20, 45, 0.92), rgba(3, 12, 30, 0.92));
+        border-radius: 32px;
+        padding: clamp(36px, 6vw, 56px);
+      }
+
+      body.depot-mode .hero .badge {
+        color: var(--ink);
+      }
+
+      .badge {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--navy);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .badge::before,
+      .badge::after {
+        content: '';
+        width: 16px;
+        height: 1px;
+        background: var(--badge-line);
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 3.2vw + 1.6rem, 3.6rem);
+        margin: 12px 0 16px;
+        color: var(--navy);
+        font-weight: 800;
+      }
+
+      p {
+        line-height: 1.6;
+        margin: 0 0 16px;
+      }
+
+      .lead {
+        font-size: 1.125rem;
+        color: var(--ink);
+      }
+
+      .cta-group {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      /* Button styles */
+      .btn {
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: transform 0.15s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn-primary {
+        background: var(--blue);
+        color: #fff;
+        border: 2px solid var(--blue);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--blue);
+        border: 2px solid var(--blue);
+      }
+
+      .btn:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 2px;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .hero-card {
+        position: relative;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 36px;
+        box-shadow: 0 26px 70px var(--shadow);
+        padding: clamp(36px, 6vw, 72px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        isolation: isolate;
+      }
+
+      .hero-card::before {
+        content: '';
+        position: absolute;
+        inset: 12%;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(199, 154, 43, 0.25), transparent 70%);
+        z-index: -1;
+      }
+
+      .hero-card img {
+        width: clamp(220px, 32vw, 420px);
+        height: auto;
+        filter: drop-shadow(0 22px 32px rgba(10, 46, 93, 0.18));
+      }
+
+      body.depot-mode .hero-card::before {
+        background: radial-gradient(circle, rgba(85, 174, 249, 0.4), transparent 70%);
+      }
+
+      body.depot-mode .hero-card img {
+        filter: drop-shadow(0 22px 32px rgba(0, 0, 0, 0.4));
+      }
+
+      .ribbon {
+        height: 4px;
+        background: linear-gradient(90deg, var(--gold), var(--blue));
+      }
+
+      .app-section {
+        background: var(--surface);
+        border-radius: 28px;
+        padding: clamp(48px, 8vw, 72px) clamp(24px, 8vw, 48px);
+        margin: clamp(64px, 10vw, 120px) 0;
+        border: 1px solid var(--line);
+        box-shadow: 0 24px 60px var(--shadow);
+      }
+
+      .app-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        gap: clamp(24px, 6vw, 40px);
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        align-items: center;
+      }
+
+      @media (min-width: 901px) {
+        .app-grid {
+          grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        }
+
+        .app-logo {
+          display: none;
+        }
+
+        .app-qr {
+          justify-self: end;
+        }
+      }
+
+      .app-logo img {
+        display: block;
+        width: clamp(80px, 12vw, 108px);
+        filter: drop-shadow(0 12px 18px rgba(10, 46, 93, 0.25));
+      }
+
+      body.depot-mode .app-logo img {
+        filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.4));
+      }
+
+      .app-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+
+      .app-qr {
+        background: linear-gradient(135deg, rgba(12, 77, 162, 0.1), rgba(10, 46, 93, 0.05));
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: 0 18px 40px rgba(10, 46, 93, 0.12);
+      }
+
+      .app-qr img {
+        border-radius: 18px;
+      }
+
+      body.depot-mode .app-section {
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      }
+
+      body.depot-mode .app-qr {
+        background: linear-gradient(135deg, rgba(85, 174, 249, 0.2), rgba(6, 20, 45, 0.6));
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      }
+
+      /* Benefit cards grid */
+      .benefits {
+        display: grid;
+        gap: clamp(20px, 4vw, 32px);
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-top: clamp(32px, 5vw, 48px);
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: clamp(20px, 4vw, 32px);
+        box-shadow: 0 10px 30px var(--shadow);
+      }
+
+      body.depot-mode .card {
+        border-color: rgba(206, 226, 255, 0.2);
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
+      }
+
+      .card h3 {
+        margin-top: 16px;
+        margin-bottom: 12px;
+        color: var(--navy);
+        font-weight: 700;
+        font-size: 1.15rem;
+      }
+
+      .about-list {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      .about-list li::before {
+        content: '•';
+        margin-right: 8px;
+        color: var(--gold);
+      }
+
+      .callout {
+        margin-top: 32px;
+      }
+
+      .callout h3 {
+        margin: 16px 0 12px;
+      }
+
+      form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .perks-list {
+        padding-left: 20px;
+        margin: 0 0 20px;
+        line-height: 1.6;
+      }
+
+      .fee-note {
+        font-size: 0.95rem;
+        background: rgba(12, 77, 162, 0.08);
+        border-left: 4px solid var(--gold);
+        padding: 16px 20px;
+        border-radius: 12px;
+        margin: 24px 0 0;
+      }
+
+      body.depot-mode .fee-note {
+        background: rgba(85, 174, 249, 0.18);
+        border-left-color: rgba(139, 201, 255, 0.85);
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      input,
+      select,
+      textarea {
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        font: inherit;
+        color: var(--ink);
+        background: var(--surface);
+      }
+
+      textarea {
+        min-height: 120px;
+      }
+
+      input:focus-visible,
+      select:focus-visible,
+      textarea:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 1px;
+      }
+
+      .contact-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      footer {
+        padding: clamp(32px, 6vw, 48px) clamp(20px, 5vw, 32px) clamp(48px, 8vw, 72px);
+        text-align: center;
+        color: var(--navy);
+        font-size: 0.95rem;
+      }
+
+      body.depot-mode footer {
+        background: rgba(4, 15, 32, 0.92);
+        color: var(--ink);
+      }
+
+      @media print {
+        header,
+        .cta-group,
+        .btn,
+        footer {
+          display: none !important;
+        }
+
+        main {
+          padding: 0;
+        }
+      }
+      
+      @media (max-width: 720px) {
+        .hero {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .hero-card {
+          max-width: min(420px, 90%);
+          margin: 0 auto;
+        }
+
+        .cta-group {
+          justify-content: center;
+        }
+
+        .benefits {
+          grid-template-columns: 1fr;
+        }
+
+        .app-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .app-actions {
+          justify-content: center;
+        }
+      }
+
+    </style>
   </head>
   <body class="driver-mode">
     <header>
@@ -57,6 +803,7 @@
             src="assets/IMG_4197.jpeg"
             alt="Kinsman Courier driver logo"
           />
+          <span>KINSMAN COURIER</span>
         </a>
         <button
           class="menu-toggle"
@@ -144,39 +891,39 @@
       </section>
 
       <section id="benefits" aria-labelledby="benefits-title">
-        <h2 id="benefits-title" class="section-heading">
+        <h2 id="benefits-title" style="color: var(--navy); font-weight: 700; font-size: 1.8rem;">
           <span class="driver-only">Why carriers choose Kinsman</span>
           <span class="depot-only">Why depots rely on Kinsman</span>
         </h2>
         <div class="benefits driver-only">
-          <article class="card benefit-card">
+          <article class="card">
             <div class="ribbon" aria-hidden="true"></div>
             <h3>Same-day &amp; Scheduled</h3>
             <p>Urgent jobs or planned routes—choose the timing that fits your day.</p>
           </article>
-          <article class="card benefit-card">
+          <article class="card">
             <div class="ribbon" aria-hidden="true"></div>
             <h3>Live Status &amp; Evidence</h3>
             <p>Track progress and receive confirmations for every hand-off.</p>
           </article>
-          <article class="card benefit-card">
+          <article class="card">
             <div class="ribbon" aria-hidden="true"></div>
             <h3>Local Pros</h3>
             <p>Couriers who care—professional, polite, and community-minded.</p>
           </article>
         </div>
         <div class="benefits depot-only">
-          <article class="card benefit-card">
+          <article class="card">
             <div class="ribbon" aria-hidden="true"></div>
             <h3>Rapid relief coverage</h3>
             <p>Call us for sickness spikes, weather fallout, or failed rounds—we deploy trained crews within hours.</p>
           </article>
-          <article class="card benefit-card">
+          <article class="card">
             <div class="ribbon" aria-hidden="true"></div>
             <h3>Briefed &amp; verified drivers</h3>
             <p>Every responder arrives with route briefs, ID, and insurance tracked inside the Kinsman Courier App.</p>
           </article>
-          <article class="card benefit-card">
+          <article class="card">
             <div class="ribbon" aria-hidden="true"></div>
             <h3>Live control &amp; reporting</h3>
             <p>Watch progress, POD uploads, and invoicing in real time so your depot team stays ahead of the phones.</p>
@@ -199,55 +946,58 @@
             />
           </div>
           <div>
-            <h2 id="delivery-manager-title" class="section-subheading">
+            <h2
+              id="delivery-manager-title"
+              style="color: var(--navy); font-weight: 700; font-size: clamp(2rem, 3vw, 2.4rem);"
+            >
               <span class="driver-only">Meet the Kinsman Delivery Manager</span>
               <span class="depot-only">Coordinate every recovery with the Kinsman Courier App</span>
             </h2>
             <div class="driver-only">
-              <p class="feature-copy">
+              <p style="line-height: 1.7; font-size: 1.05rem;">
                 Our in-house platform keeps every mile accountable—co-designed with drivers, giving you
                 live control over routes, compliance, and proof of delivery. Dive into dashboards shaped by
                 real courier feedback and see why partners crown it their control centre.
               </p>
               <div class="app-actions">
-                <a class="btn btn-primary" href="delivery-manager.html">
+                <a class="btn btn-primary" href="delivery-manager.html" style="border-radius: 999px;">
                   Explore Delivery Manager
                 </a>
-                <a class="btn btn-ghost" href="delivery-manager.html#hero">
+                <a class="btn btn-ghost" href="delivery-manager.html#hero" style="border-radius: 999px;">
                   Scan to self-register
                 </a>
               </div>
             </div>
             <div class="depot-only">
-              <p class="feature-copy">
+              <p style="line-height: 1.7; font-size: 1.05rem;">
                 Smart delivery coordination that runs inside Telegram. Brief relief crews, capture POD, and
                 sync every update back to your Google Sheets without installing new depot software.
               </p>
-              <ul class="perks-list">
+              <ul class="perks-list" style="margin-top: 12px;">
                 <li>Push emergency rounds to available drivers in seconds.</li>
                 <li>Track start, pause, and finish times with live photo proof.</li>
                 <li>Share real-time data with controllers and head office automatically.</li>
               </ul>
               <div class="app-actions">
-                <a class="btn btn-primary" href="#contact">
+                <a class="btn btn-primary" href="#contact" style="border-radius: 999px;">
                   Talk to a coverage lead
                 </a>
-                <a class="btn btn-ghost" href="delivery-manager.html">
+                <a class="btn btn-ghost" href="delivery-manager.html" style="border-radius: 999px;">
                   See product overview
                 </a>
               </div>
             </div>
           </div>
           <div class="app-qr" aria-labelledby="qr-title">
-            <h3 id="qr-title" class="qr-title">
+            <h3 id="qr-title" style="font-size: 1.2rem; margin-bottom: 16px; color: var(--navy);">
               <span class="driver-only">Scan &amp; register in minutes</span>
               <span class="depot-only">Instant access for relief drivers</span>
             </h3>
             <img src="assets/QRkinsman.PNG" alt="QR code linking to the Kinsman Courier App" />
-            <p class="driver-only qr-note">
+            <p class="driver-only" style="margin-top: 12px; font-size: 0.95rem;">
               Drivers register in minutes and start earning with our guided onboarding.
             </p>
-            <p class="depot-only qr-note">
+            <p class="depot-only" style="margin-top: 12px; font-size: 0.95rem;">
               Share the link straight to standby drivers so they can onboard and claim relief rounds on
               the go.
             </p>
@@ -256,7 +1006,7 @@
       </section>
 
       <section id="about" aria-labelledby="about-title">
-        <h2 id="about-title" class="section-heading">
+        <h2 id="about-title" style="color: var(--navy); font-weight: 700; font-size: 1.8rem;">
           <span class="driver-only">About us</span>
           <span class="depot-only">Your emergency coverage partner</span>
         </h2>
@@ -303,7 +1053,7 @@
       </section>
 
       <section id="become" aria-labelledby="become-title">
-        <h2 id="become-title" class="section-heading">
+        <h2 id="become-title" style="color: var(--navy); font-weight: 700; font-size: 1.8rem;">
           <span class="driver-only">Become a Kinsman</span>
           <span class="depot-only">Book emergency coverage</span>
         </h2>
@@ -336,18 +1086,11 @@
         </p>
         <form
           class="driver-only"
-          action="https://formsubmit.co/contact@kinsmancourier.com"
+          action="mailto:hello@kinsmancourier.com"
           method="post"
+          enctype="text/plain"
         >
-          <input
-            class="hidden-field"
-            type="text"
-            name="_honey"
-            aria-hidden="true"
-            tabindex="-1"
-            autocomplete="off"
-          />
-          <input type="hidden" name="_subject" value="New driver application" />
+          <!-- TODO: Replace mailto action with secure backend endpoint when available. -->
           <label for="name">Full name
             <input id="name" name="Full Name" type="text" autocomplete="name" required />
           </label>
@@ -370,24 +1113,16 @@
             <textarea id="notes" name="Notes" placeholder="Availability, experience, questions"></textarea>
           </label>
           <button class="btn btn-primary" type="submit">Send application</button>
-          <p class="form-note">
+          <p style="font-size: 0.9rem; color: var(--ink);">
             By applying, you confirm you hold required documents to work as a courier.
           </p>
         </form>
         <form
           class="depot-only"
-          action="https://formsubmit.co/contact@kinsmancourier.com"
+          action="mailto:hello@kinsmancourier.com"
           method="post"
+          enctype="text/plain"
         >
-          <input
-            class="hidden-field"
-            type="text"
-            name="_honey"
-            aria-hidden="true"
-            tabindex="-1"
-            autocomplete="off"
-          />
-          <input type="hidden" name="_subject" value="Depot coverage request" />
           <label for="depot-name">Depot or company name
             <input id="depot-name" name="Depot" type="text" required />
           </label>
@@ -421,23 +1156,23 @@
             ></textarea>
           </label>
           <button class="btn btn-primary" type="submit">Request coverage</button>
-          <p class="form-note">
+          <p style="font-size: 0.9rem; color: var(--ink);">
             We’ll reply with availability and pricing confirmation straight away.
           </p>
         </form>
       </section>
 
       <section id="contact" aria-labelledby="contact-title">
-        <h2 id="contact-title" class="section-heading">
+        <h2 id="contact-title" style="color: var(--navy); font-weight: 700; font-size: 1.8rem;">
           Contact
         </h2>
         <article class="card contact-card">
           <div class="ribbon" aria-hidden="true"></div>
-          <p class="depot-only no-top-margin">
+          <p class="depot-only" style="margin-top: 0;">
             Urgent depot cover? Include your depot name and time window for a rapid call back.
           </p>
           <p>
-            Email: <a href="mailto:contact@kinsmancourier.com">contact@kinsmancourier.com</a>
+            Email: <a href="mailto:hello@kinsmancourier.com">hello@kinsmancourier.com</a>
           </p>
           <p>Hours: Monday – Saturday, 7am to 8pm</p>
         </article>
@@ -446,6 +1181,232 @@
     <footer>
       <small id="copyright"></small>
     </footer>
-    <script src="assets/js/main.js" defer></script>
+    <script>
+      const year = new Date().getFullYear();
+      const el = document.getElementById('copyright');
+      if (el) {
+        el.textContent = `© ${year} Kinsman Courier. All rights reserved.`;
+      }
+    </script>
+    <script>
+      (() => {
+        const body = document.body;
+        const toggleButton = document.querySelector('.mode-toggle');
+        const toggleImg = document.getElementById('mode-toggle-img');
+        const brandLogo = document.getElementById('brand-logo');
+        const modeText = document.getElementById('mode-toggle-text');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.getElementById('primary-navigation');
+        const navBackdrop = document.querySelector('.nav-backdrop');
+        const desktopQuery =
+          typeof window !== 'undefined' ? window.matchMedia('(min-width: 901px)') : null;
+
+        const syncNavAria = () => {
+          if (!nav) return;
+          if (!desktopQuery) {
+            nav.removeAttribute('aria-hidden');
+            return;
+          }
+          if (desktopQuery.matches) {
+            nav.removeAttribute('aria-hidden');
+          } else {
+            nav.setAttribute('aria-hidden', body.classList.contains('menu-open') ? 'false' : 'true');
+          }
+        };
+
+        const closeMenu = () => {
+          body.classList.remove('menu-open');
+          if (menuToggle) {
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Open navigation menu');
+          }
+          if (navBackdrop) {
+            navBackdrop.hidden = true;
+          }
+          syncNavAria();
+        };
+
+        const openMenu = () => {
+          body.classList.add('menu-open');
+          if (menuToggle) {
+            menuToggle.setAttribute('aria-expanded', 'true');
+            menuToggle.setAttribute('aria-label', 'Close navigation menu');
+          }
+          if (navBackdrop) {
+            navBackdrop.hidden = false;
+          }
+          syncNavAria();
+        };
+
+        if (menuToggle && nav) {
+          syncNavAria();
+          menuToggle.addEventListener('click', () => {
+            if (body.classList.contains('menu-open')) {
+              closeMenu();
+            } else {
+              openMenu();
+            }
+          });
+
+          if (navBackdrop) {
+            navBackdrop.addEventListener('click', closeMenu);
+          }
+
+          const navLinks = Array.from(nav.querySelectorAll('a[href^="#"]'));
+          navLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+              if (desktopQuery && desktopQuery.matches) return;
+              closeMenu();
+            });
+          });
+
+          document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && body.classList.contains('menu-open')) {
+              closeMenu();
+              menuToggle.focus();
+            }
+          });
+
+          if (desktopQuery) {
+            desktopQuery.addEventListener('change', (event) => {
+              if (event.matches) {
+                closeMenu();
+              } else {
+                syncNavAria();
+              }
+            });
+          }
+        } else {
+          syncNavAria();
+        }
+
+        if (!toggleButton) {
+          return;
+        }
+
+        const modes = {
+          driver: {
+            brandSrc: 'assets/IMG_4197.jpeg',
+            brandAlt: 'Kinsman Courier driver logo',
+            toggleSrc: 'assets/69570E3B-FB1D-43E2-978B-21ECCD7E5C8F.png',
+            toggleAlt: 'Switch to depot mode',
+            toggleLabel: 'Switch to depot view',
+            text: 'Driver mode',
+          },
+          depot: {
+            brandSrc: 'assets/69570E3B-FB1D-43E2-978B-21ECCD7E5C8F.png',
+            brandAlt: 'Kinsman Courier depot logo',
+            toggleSrc: 'assets/IMG_4197.jpeg',
+            toggleAlt: 'Switch to driver mode',
+            toggleLabel: 'Switch to driver view',
+            text: 'Depot mode',
+          },
+        };
+
+        let storedMode = null;
+        if (typeof window !== 'undefined') {
+          try {
+            storedMode = window.localStorage.getItem('kinsman-mode');
+          } catch (error) {
+            storedMode = null;
+          }
+        }
+        let currentMode = storedMode === 'depot' ? 'depot' : 'driver';
+
+        const applyMode = (mode) => {
+          currentMode = mode === 'depot' ? 'depot' : 'driver';
+          body.classList.toggle('depot-mode', currentMode === 'depot');
+          body.classList.toggle('driver-mode', currentMode === 'driver');
+          const config = modes[currentMode];
+          if (brandLogo) {
+            brandLogo.src = config.brandSrc;
+            brandLogo.alt = config.brandAlt;
+          }
+          if (toggleImg) {
+            toggleImg.src = config.toggleSrc;
+            toggleImg.alt = config.toggleAlt;
+          }
+          if (modeText) {
+            modeText.textContent = config.text;
+          }
+          toggleButton.setAttribute('aria-label', config.toggleLabel);
+          if (typeof window !== 'undefined') {
+            try {
+              window.localStorage.setItem('kinsman-mode', currentMode);
+            } catch (error) {
+              /* no-op */
+            }
+          }
+        };
+
+        applyMode(currentMode);
+
+        const switchMode = () => {
+          applyMode(currentMode === 'driver' ? 'depot' : 'driver');
+        };
+
+        toggleButton.addEventListener('click', switchMode);
+        toggleButton.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            switchMode();
+          }
+        });
+
+        if (nav) {
+          const navLinks = Array.from(nav.querySelectorAll('a[href^="#"]'));
+          const sectionLinks = new Map();
+
+          navLinks.forEach((link) => {
+            const id = link.getAttribute('href')?.slice(1);
+            if (!id) return;
+            const section = document.getElementById(id);
+            if (!section) return;
+            if (!sectionLinks.has(section)) {
+              sectionLinks.set(section, []);
+            }
+            sectionLinks.get(section).push(link);
+          });
+
+          const clearActive = () => {
+            navLinks.forEach((link) => {
+              link.removeAttribute('data-active');
+              link.removeAttribute('aria-current');
+            });
+          };
+
+          const setActive = (section) => {
+            clearActive();
+            const links = sectionLinks.get(section);
+            if (links) {
+              links.forEach((link) => {
+                link.setAttribute('data-active', 'true');
+                link.setAttribute('aria-current', 'page');
+              });
+            }
+          };
+
+          if (sectionLinks.size) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                const visible = entries
+                  .filter((entry) => entry.isIntersecting)
+                  .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+                if (visible.length > 0) {
+                  setActive(visible[0].target);
+                }
+              },
+              { rootMargin: '-50% 0px -40% 0px', threshold: [0.1, 0.25, 0.5] }
+            );
+
+            sectionLinks.forEach((_, section) => observer.observe(section));
+            const homeSection = document.getElementById('home');
+            if (homeSection) {
+              setActive(homeSection);
+            }
+          }
+        }
+      })();
+    </script>
   </body>
 </html>
