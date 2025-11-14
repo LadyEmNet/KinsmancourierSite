@@ -434,6 +434,46 @@
         margin-top: 8px;
       }
 
+      .driver-onboarding {
+        background: white;
+        padding: clamp(56px, 8vw, 88px) clamp(20px, 5vw, 36px);
+        border-top: 1px solid rgba(12, 77, 162, 0.08);
+      }
+
+      .driver-onboarding .section-inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .driver-onboarding h2 {
+        color: var(--navy);
+        font-size: clamp(1.8rem, 3vw, 2.2rem);
+        margin-bottom: 16px;
+      }
+
+      .driver-onboarding p {
+        line-height: 1.7;
+      }
+
+      .driver-onboarding ol {
+        margin: 24px 0 32px;
+        padding-left: 24px;
+        line-height: 1.7;
+      }
+
+      .driver-onboarding ol li + li {
+        margin-top: 10px;
+      }
+
+      .driver-onboarding .btn {
+        background: var(--blue);
+        color: white;
+        border-radius: 999px;
+        padding-left: 28px;
+        padding-right: 28px;
+        box-shadow: 0 16px 36px rgba(12, 77, 162, 0.25);
+      }
+
       .cta-section {
         background: linear-gradient(135deg, rgba(12, 77, 162, 0.92), rgba(10, 46, 93, 0.92));
         color: white;
@@ -654,6 +694,20 @@
               <p>Fully compatible with existing Kinsman systems and relief playbooks.</p>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="driver-onboarding" aria-labelledby="driver-onboarding-title">
+        <div class="section-inner">
+          <h2 id="driver-onboarding-title">How to Get Started:</h2>
+          <ol>
+            <li>"Fill out the short form below with your details."</li>
+            <li>"Pay a one-off registration fee (£5) to secure your place."</li>
+            <li>"We verify your licence and insurance."</li>
+            <li>"You’ll receive login details for the Kinsman app and access to a live job feed."</li>
+            <li>"Choose the shifts you want, log in when you’re ready, deliver and get paid."</li>
+          </ol>
+          <a class="btn" href="index.html#become">[ Get Started — Join Kinsman ]</a>
         </div>
       </section>
 

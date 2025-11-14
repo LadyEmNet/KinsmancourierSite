@@ -690,6 +690,70 @@
         line-height: 1.6;
       }
 
+      .driver-guide {
+        margin-top: 32px;
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        padding: clamp(20px, 5vw, 36px);
+        background: linear-gradient(135deg, rgba(199, 154, 43, 0.12), rgba(12, 77, 162, 0.08));
+        box-shadow: 0 20px 45px rgba(10, 46, 93, 0.12);
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .driver-guide__intro h3 {
+        margin: 0 0 12px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        color: var(--navy);
+      }
+
+      .driver-guide__intro p {
+        margin: 0 0 12px;
+        font-size: 1.05rem;
+        line-height: 1.7;
+      }
+
+      .driver-guide__grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .driver-guide__grid article {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 16px;
+        padding: 20px;
+        border: 1px solid rgba(10, 46, 93, 0.08);
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      .driver-guide__grid h4 {
+        margin: 0 0 12px;
+        font-size: 1.1rem;
+        color: var(--navy);
+      }
+
+      .driver-guide__grid ul {
+        margin: 0;
+        padding-left: 18px;
+        line-height: 1.6;
+      }
+
+      .driver-guide__grid li {
+        margin-bottom: 8px;
+      }
+
+      .driver-guide__cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-between;
+      }
+
       .fee-note {
         font-size: 0.95rem;
         background: rgba(12, 77, 162, 0.08);
@@ -1092,15 +1156,74 @@
           <li>Choose the work that suits you and set the pace of your earnings.</li>
           <li>Access a supportive network that believes everyone deserves a Kinsman.</li>
         </ul>
+        <div class="driver-guide driver-only" aria-labelledby="driver-guide-title">
+          <div class="driver-guide__intro">
+            <h3 id="driver-guide-title">"Become a Kinsman Driver"</h3>
+            <p>"Work when you want. Earn with confidence. Join the Kinsman team."</p>
+            <p>
+              "At Kinsman Courier, we’re looking for reliable people who want flexible driving work
+              that fits around their life — not the other way around. With us you can pick shifts
+              that suit your schedule, keep your evenings free, and make a solid income without
+              long-term commitments or heavy admin."
+            </p>
+          </div>
+          <div class="driver-guide__grid">
+            <article>
+              <h4><strong>Why This Works for You:</strong></h4>
+              <ul>
+                <li>
+                  "Shift choices: Daytime, part-time or ad-hoc rounds — fit it around school runs,
+                  family time or other commitments."
+                </li>
+                <li>"No fixed hours: You select when you’re available, and we match you to jobs accordingly."</li>
+                <li>"Simple setup: You’ll be using our app to receive jobs, log them and get paid."</li>
+                <li>
+                  "Support and respect: You’re part of a team that values trust, reliability and clear
+                  communication."
+                </li>
+                <li>
+                  "Repeatable &amp; predictable: Once you’re in, you’ll know the process and can decide how
+                  often you drive."
+                </li>
+              </ul>
+            </article>
+            <article>
+              <h4><strong>What We Ask From You:</strong></h4>
+              <p>
+                "We need drivers who can deliver reliably and professionally. To apply, you’ll need:"
+              </p>
+              <ul>
+                <li>"A valid driver licence."</li>
+                <li>
+                  "Vehicle insurance and the right vehicle type for the job (car, small van, etc)."
+                </li>
+                <li>"A mobile phone and willingness to use our app."</li>
+                <li>
+                  "A friendly attitude, timeliness and a focus on safe, reliable delivery."
+                </li>
+              </ul>
+            </article>
+          </div>
+          <div class="driver-guide__cta">
+            <a class="btn btn-primary" href="#become">[ Get Started — Join Kinsman ]</a>
+          </div>
+        </div>
         <ul class="perks-list depot-only">
           <li>Emergency replacements for full rounds or targeted drops.</li>
           <li>Named, ID-verified drivers with multi-network experience.</li>
           <li>Live updates, POD uploads, and invoicing straight from the app.</li>
         </ul>
-        <p class="fee-note driver-only">
-          Secure your crown today for a one-off £5 sign-up fee—yours for life. Monthly membership is
-          coming soon, but early registrants keep the £5 forever.
-        </p>
+        <div class="fee-note driver-only">
+          <p>
+            Secure your crown today for a one-off £5 sign-up fee—yours for life. Monthly membership is
+            coming soon, but early registrants keep the £5 forever.
+          </p>
+          <p>
+            "By applying you confirm that you meet the driver licence and insurance requirements. A
+            one-off registration fee is required to secure your place. We’ll be in touch soon after
+            verification"
+          </p>
+        </div>
         <p class="fee-note depot-only">
           Coverage calls include a transparent rate card and recap by email. No retainers—only pay for the
           shifts you activate.
